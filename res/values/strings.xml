@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MoveIn</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <!-- fb login -->
+     <string name="APP_ID">371482613055487</string>
+     <string name="title_facebook_login">Log In</string>
+    <!--  fb login -->
+    <!--  google+login -->
+    <string name="btn_logout_from_google">Logout from Google</string>
+    <string name="btn_revoke_access">Revoke Access</string>
+	<!-- google+ login -->
+	<!-- Post an Ad -->
+	<string name="flatmates_needed">FLATMATE NEEDED</string>
+	<string name="flatmates_no">1</string>
+	<string name="photos">PHOTOS</string>
+	<string name="plus">+</string>
+	<string name="indian_rupee">₹</string>
+	<string name="location">LOCATION</string>
+	<string name="add_locality">Add Locality</string>
+	<string name="place_details">Place Details Per Head</string>
+	<string name="deposit_per_head">Deposit</string>
+	<string name="blank"> </string>
+	<string name="rent_per_head">Rent</string>
+	<string name="description">DESCRIPTION</string>
+	<string name="more_about_place">More About Your Place</string>
+	<string name="available_from">Available From</string>
+	<string name="select_date">Select A Date</string>
+	<string name="deposit_value">Enter Deposit Value</string>
+	<string name="rent_value">Enter Rent Value</string>
+	<string name="looking_for">Looking For</string>
+	<string name="preferences">Preferences</string>
+	<string name="preference_spinner">Select Preferences</string>
+	<string name="aminities">Aminities</string>
+	<string name="aminities_spinner">Select Aminities</string>
+	<string name="contact_number">Contact Number</string>
+	<string name="contact_numbercheckbox">If same as default</string>
+	<string name="radio_male">Male</string>
+	<string name="radio_female">Female</string>
+	<string name="radio_both">Both</string>
+	<string name="radio_none">None</string>
+	<string name="radio_visible_after_chat">Visible After Chat</string>
+	<string name="upload_audio">Upload Audio</string>
+	<string name="upload_video">Upload Video</string>
+	<string name="aminities_spinnerflat">Flat Aminities</string>
+	<string name="aminities_spinnerbuilding">Building Aminities</string>
+	  <string name="btnUploadToServer">Upload to Server</string>
+	  <string name="fixed">Fixed</string>
+	   <string name="submit">Submit</string>
+	    <string name="inital_Time">0 min, 0 sec</string>
+	    <string name="others">Others</string>
+	    <string name="others_flataminities">Other Flat Aminities(Max 4) </string>
+	     <string name="others_buildingaminities">Other Building Aminities </string>
+	     <string name="addothers">Add</string>
+	
+	<!-- Post an Ad -->
+
+</resources>

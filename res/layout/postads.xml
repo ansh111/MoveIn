@@ -1,0 +1,1129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffeeeeee"
+    android:paddingLeft="8.0dip"
+    android:paddingRight="8.0dip"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8.0dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:gravity="start"
+                android:text="@string/location"
+                android:textColor="@color/item_label"
+                android:textSize="16.0sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:layout_marginBottom="8.0dip"
+                android:layout_marginTop="8.0dip"
+                android:background="@color/divider" />
+
+            <TextView
+                android:id="@+id/postaddress"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8.0dip"
+                android:background="@drawable/rectangle_edittext"
+                android:drawableStart="@drawable/ic_action_place"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/add_locality"
+                android:maxLines="2"
+                android:padding="8.0dip"
+                android:textColor="@color/divider" />
+
+            <TextView
+                android:id="@+id/postlocality"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8.0dip"
+                android:background="@drawable/rectangle_edittext"
+                android:drawableStart="@drawable/ic_action_place"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/add_locality"
+                android:maxLines="2"
+                android:padding="8.0dip"
+                android:textColor="@color/divider" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8.0dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.0"
+                    android:gravity="start"
+                    android:text="@string/looking_for"
+                    android:textColor="@color/black"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:layout_marginBottom="8.0dip"
+                android:layout_marginTop="4.0dip"
+                android:background="@color/divider" />
+
+            <RadioGroup
+                android:id="@+id/toggleGrouplooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4.0dip"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ToggleButton
+                    android:id="@+id/toggle_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bhk_button_pressed"
+                    android:checked="true"
+                    android:onClick="onToggleLook"
+                    android:textColor="@color/white"
+                    android:textOff="Male"
+                    android:textOn="Male"
+                    android:textSize="14.0sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggle_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bhk_button_normal"
+                    android:onClick="onToggleLook"
+                    android:textColor="@color/ppl_cnt"
+                    android:textOff="Female"
+                    android:textOn="Female"
+                    android:textSize="14.0sp" />
+
+                <ToggleButton
+                    android:id="@+id/toggle_any"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bhk_button_normal"
+                    android:onClick="onToggleLook"
+                    android:textColor="@color/ppl_cnt"
+                    android:textOff="Any"
+                    android:textOn="Any"
+                    android:textSize="14.0sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8.0dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.0"
+                    android:gravity="start"
+                    android:text="@string/flatmates_needed"
+                    android:textColor="@color/black"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/forppl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="end"
+                    android:text="@string/flatmates_no"
+                    android:textColor="@color/black"
+                    android:textSize="20.0sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:layout_marginBottom="8.0dip"
+                android:layout_marginTop="4.0dip"
+                android:background="@color/divider" />
+
+            <RadioGroup
+                android:id="@+id/toggleGroupfaltmatesno."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4.0dip"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ToggleButton
+                    android:id="@+id/flatmate_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bhk_button_pressed"
+                    android:checked="true"
+                    android:onClick="onToggleNum"
+                    android:textColor="@color/white"
+                    android:textOff="1"
+                    android:textOn="1"
+                    android:textSize="14.0sp" />
+
+                <ToggleButton
+                    android:id="@+id/flatmate_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bhk_button_normal"
+                    android:onClick="onToggleNum"
+                    android:textColor="@color/ppl_cnt"
+                    android:textOff="2"
+                    android:textOn="2"
+                    android:textSize="14.0sp" />
+
+                <ToggleButton
+                    android:id="@+id/flatmate_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bhk_button_normal"
+                    android:onClick="onToggleNum"
+                    android:textColor="@color/ppl_cnt"
+                    android:textOff="3"
+                    android:textOn="3"
+                    android:textSize="14.0sp" />
+
+                <ToggleButton
+                    android:id="@+id/flatmate_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bhk_button_normal"
+                    android:onClick="onToggleNum"
+                    android:textColor="@color/ppl_cnt"
+                    android:textOff="4"
+                    android:textOn="4"
+                    android:textSize="14.0sp" />
+
+                <ToggleButton
+                    android:id="@+id/flatmate_five"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/bhk_button_normal"
+                    android:onClick="onToggleNum"
+                    android:textColor="@color/ppl_cnt"
+                    android:textOff="5"
+                    android:textOn="5"
+                    android:textSize="14.0sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.0"
+                    android:gravity="start"
+                    android:text="@string/photos"
+                    android:textColor="@color/item_label"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/add_picsfromgallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/chat_bg"
+                    android:gravity="end"
+                    android:paddingBottom="2.0dip"
+                    android:paddingLeft="16.0dip"
+                    android:paddingRight="16.0dip"
+                    android:paddingTop="2.0dip"
+                    android:text="@string/plus"
+                    android:textColor="#ffffffff"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/takepic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/chat_bg"
+                    android:gravity="end"
+                    android:paddingBottom="2.0dip"
+                    android:paddingLeft="16.0dip"
+                    android:paddingRight="16.0dip"
+                    android:paddingTop="2.0dip"
+                    android:text="@string/plus"
+                    android:textColor="#ffffffff"
+                    android:textSize="16.0sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:layout_marginBottom="8.0dip"
+                android:layout_marginTop="8.0dip"
+                android:background="@color/divider" />
+
+            <Gallery
+                android:id="@+id/gallery"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/imageviewgallery"
+                android:layout_width="215dp"
+                android:layout_height="315dp"
+                android:layout_gravity="center_horizontal"
+                android:background="#cfcfcf"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20.0dip"
+            android:gravity="start"
+            android:text="@string/place_details"
+            android:textColor="@color/item_label"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@color/divider" />
+
+        <GridLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:alignmentMode="alignBounds"
+            android:columnCount="4"
+            android:columnOrderPreserved="false"
+            android:src="@drawable/ic_launcher"
+            android:useDefaultMargins="true" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="end|center"
+                android:gravity="end"
+                android:text="@string/rent_per_head"
+                android:textColor="@color/item_label"
+                android:textSize="12.0sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/symbol_budget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:layout_marginEnd="2.0dip"
+                android:layout_marginStart="8.0dip"
+                android:layout_marginTop="4.0dip"
+                android:gravity="center"
+                android:text="@string/indian_rupee"
+                android:textColor="@color/divider"
+                android:textSize="20.0sp" />
+
+            <EditText
+                android:id="@+id/deposit_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_gravity="start"
+                android:hint="@string/rent_value"
+                android:inputType="numberDecimal"
+                android:textColor="@color/divider"
+                android:textSize="16.0sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/postcheckboxrentnegotiable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:gravity="start"
+                android:text="@string/fixed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:gravity="end"
+                android:text="@string/deposit_per_head"
+                android:textColor="@color/item_label"
+                android:textSize="12.0sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/symbol_rent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="2.0dip"
+                android:layout_marginStart="8.0dip"
+                android:layout_marginTop="4.0dip"
+                android:gravity="center"
+                android:text="@string/blank"
+                android:textColor="@color/divider"
+                android:textSize="20.0sp" />
+
+            <TextView
+                android:id="@+id/symbol_budget1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:layout_marginEnd="2.0dip"
+                android:layout_marginStart="8.0dip"
+                android:layout_marginTop="4.0dip"
+                android:gravity="center"
+                android:text="@string/indian_rupee"
+                android:textColor="@color/divider"
+                android:textSize="20.0sp" />
+
+            <EditText
+                android:id="@+id/rent_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="@string/deposit_value"
+                android:inputType="numberDecimal"
+                android:textColor="@color/divider"
+                android:textSize="16.0sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/postcheckboxdepositnegotiable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:gravity="start"
+                android:text="@string/fixed" />
+        </GridLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description"
+                android:textColor="@color/item_label"
+                android:textSize="16.0sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:layout_marginBottom="2.0dip"
+                android:layout_marginTop="8.0dip"
+                android:background="@color/divider" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/more_about_place"
+                android:maxLines="4"
+                android:minLines="2"
+                android:textColor="@color/divider" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:text="@string/available_from"
+            android:textColor="@color/item_label"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@color/divider" />
+
+        <TextView
+            android:id="@+id/date_text"
+            style="@android:style/Widget.DeviceDefault.Light.Spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20.0dip"
+            android:gravity="center_vertical"
+            android:onClick="showDatePickerDialog"
+            android:text="@string/select_date"
+            android:textColor="@color/divider" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:text="@string/preferences"
+            android:textColor="@color/item_label"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@color/divider" />
+
+        <Spinner
+            android:id="@+id/mpreferencespinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:prompt="@string/preference_spinner"
+            android:spinnerMode="dialog" >
+        </Spinner>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:text="@string/aminities"
+            android:textColor="@color/item_label"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@color/divider" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:text="@string/aminities_spinnerflat"
+            android:textColor="@color/item_label"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/maminitiesspinnerflat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:prompt="@string/aminities_spinnerflat" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/others"
+                android:textColor="@color/item_label"
+                android:textSize="12.0sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:layout_marginBottom="2.0dip"
+                android:layout_marginTop="8.0dip"
+                android:background="@color/divider" />
+			<RelativeLayout 
+			      android:layout_width="match_parent"
+                android:layout_height="wrap_content" 
+                android:id="@+id/postflatrelativelayout">
+            <FrameLayout
+                android:id="@+id/postframeothers1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:padding="5dp"
+                android:visibility="gone"
+                >
+
+                <Button
+                    android:id="@+id/postaddedothers1"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                  
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:textStyle="bold" 
+                    android:clickable="false"/>
+
+                <Button
+                    android:id="@+id/postdeleteothers1"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" 
+                    
+                    android:background="@drawable/delete" />
+            </FrameLayout>
+              <FrameLayout
+                android:id="@+id/postframeothers2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:layout_toEndOf="@+id/postframeothers1"
+                >
+
+                <Button
+                    android:id="@+id/postaddedothers2"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                  
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:textStyle="bold" 
+                    android:clickable="false"/>
+
+                <Button
+                    android:id="@+id/postdeleteothers2"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" 
+                    
+                    android:background="@drawable/delete" />
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/postframeothers3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:layout_toEndOf="@+id/postframeothers2"
+                >
+
+                <Button
+                    android:id="@+id/postaddedothers3"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                  
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:textStyle="bold" 
+                    android:clickable="false"/>
+
+                <Button
+                    android:id="@+id/postdeleteothers3"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" 
+                    
+                    android:background="@drawable/delete" />
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/postframeothers4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:layout_toEndOf="@+id/postframeothers3"
+                >
+
+                <Button
+                    android:id="@+id/postaddedothers4"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                  
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:textStyle="bold" 
+                    android:clickable="false"/>
+
+                <Button
+                    android:id="@+id/postdeleteothers4"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" 
+                    
+                    android:background="@drawable/delete" />
+            </FrameLayout>
+           
+           </RelativeLayout>
+			<LinearLayout 
+			    
+			    android:layout_width="match_parent"
+			    android:layout_height="0dp"
+			    android:layout_weight="1"
+			    android:orientation="horizontal"
+			    >
+            <EditText
+                android:id="@+id/postaminitiesflatothers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/others_flataminities"
+               
+                android:textColor="@color/divider"
+                android:textSize="12sp" 
+               android:layout_weight="0.7"/>
+            <Button 
+                android:id="@+id/postaminitiesflataddothers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" 
+                android:layout_weight="0.3"
+                android:text="@string/addothers"/>
+            
+            </LinearLayout>
+                
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:text="@string/aminities_spinnerbuilding"
+            android:textColor="@color/item_label"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/maminitiesspinnerbuilding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:prompt="@string/aminities_spinnerbuilding" >
+        </Spinner>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/others"
+                android:textColor="@color/item_label"
+                android:textSize="12.0sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:layout_marginBottom="2.0dip"
+                android:layout_marginTop="8.0dip"
+                android:background="@color/divider" />
+            <RelativeLayout 
+			      android:layout_width="match_parent"
+                android:layout_height="wrap_content" 
+              
+                android:id="@+id/postbuildingreltivelayout"
+               >
+            <FrameLayout
+                android:id="@+id/postframeothers5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:padding="5dp"
+                android:visibility="gone"
+               
+                >
+
+                <Button
+                    android:id="@+id/postaddedothers5"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                  
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:textStyle="bold" 
+                    android:clickable="false"/>
+
+                <Button
+                    android:id="@+id/postdeleteothers5"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" 
+                    
+                    android:background="@drawable/delete" />
+            </FrameLayout>
+              <FrameLayout
+                android:id="@+id/postframeothers6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:layout_toEndOf="@+id/postframeothers5"
+                >
+
+                <Button
+                    android:id="@+id/postaddedothers6"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                  
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:textStyle="bold" 
+                    android:clickable="false"/>
+
+                <Button
+                    android:id="@+id/postdeleteothers6"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" 
+                    
+                    android:background="@drawable/delete" />
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/postframeothers7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:layout_toEndOf="@+id/postframeothers6"
+                >
+
+                <Button
+                    android:id="@+id/postaddedothers7"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                  
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:textStyle="bold" 
+                    android:clickable="false"/>
+
+                <Button
+                    android:id="@+id/postdeleteothers7"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" 
+                    
+                    android:background="@drawable/delete" />
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/postframeothers8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:layout_toEndOf="@+id/postframeothers7"
+                >
+
+                <Button
+                    android:id="@+id/postaddedothers8"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                  
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:textStyle="bold" 
+                    android:clickable="false"/>
+
+                <Button
+                    android:id="@+id/postdeleteothers8"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" 
+                    
+                    android:background="@drawable/delete" />
+            </FrameLayout>
+           
+           </RelativeLayout>
+
+            <LinearLayout 
+			    
+			    android:layout_width="match_parent"
+			    android:layout_height="0dp"
+			    android:layout_weight="1"
+			    android:orientation="horizontal"
+			    >
+           <EditText
+                android:id="@+id/postaminitiesbuildingothers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/others_buildingaminities"
+               
+                android:textColor="@color/divider"
+                android:textSize="12sp" 
+                android:layout_weight="0.7"/>
+            <Button 
+                android:id="@+id/postaminitiesbuildingaddothers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" 
+                android:layout_weight="0.3"
+                android:text="@string/addothers"
+                />
+            
+            </LinearLayout>
+            
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:text="@string/contact_number"
+            android:textColor="@color/item_label"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@color/divider" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <EditText
+                android:id="@+id/postcontact_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:fitsSystemWindows="true"
+                android:inputType="numberSigned" />
+
+            <CheckBox
+                android:id="@+id/contact_numbercheck"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:fitsSystemWindows="true"
+                android:text="@string/contact_numbercheckbox"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroupcontact_number"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radio_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/radio_male"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/radio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_female"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/radio_both"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_both"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/radio_none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_none"
+                android:textSize="12sp" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20.0dip"
+            android:layout_weight="1"
+            android:text="@string/upload_audio"
+            android:textColor="@color/item_label"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@color/divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/postaudiolinearlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/postaudiopreview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:src="@drawable/audiofileicon" />
+
+                <TextView
+                    android:id="@+id/postaudioalbumtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/postaudioupload"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Upload" />
+
+            <Button
+                android:id="@+id/postaudiorecord"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Record" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20.0dip"
+            android:layout_weight="1"
+            android:text="@string/upload_video"
+            android:textColor="@color/item_label"
+            android:textSize="16.0sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@color/divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/postvideopreview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:src="@drawable/ic_launcher" />
+
+            <Button
+                android:id="@+id/postvideoupload"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Upload" />
+
+            <Button
+                android:id="@+id/postvideorecord"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Record" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/postprogressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_marginBottom="35dp"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@color/divider" />
+
+        <Button
+            android:id="@+id/postsubmit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/submit" >
+        </Button>
+    </LinearLayout>
+
+</ScrollView>

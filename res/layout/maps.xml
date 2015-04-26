@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.app.movein.maps.GoogleMaps" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <com.app.movein.maps.CustomAutoCompleteTextView
+            android:id="@+id/atv_places"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_weight="0.5"
+            android:fitsSystemWindows="true" />
+
+        <Button
+            android:id="@+id/buttonLocationdone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0.22"
+            android:fitsSystemWindows="true"
+            android:text="Done" >
+        </Button>
+         <Button
+            android:id="@+id/buttonLocationconfirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0.28"
+            android:fitsSystemWindows="true"
+            android:text="Confirm" >
+        </Button>
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.app.movein.maps.GoogleMaps"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.MapFragment" />
+
+</LinearLayout>
