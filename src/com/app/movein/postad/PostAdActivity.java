@@ -1,5 +1,6 @@
 package com.app.movein.postad;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -15,6 +16,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -34,6 +36,11 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.media.ExifInterface;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
@@ -45,7 +52,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -59,6 +65,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -70,9 +77,7 @@ import android.widget.VideoView;
 
 import com.app.movein.R;
 import com.app.movein.postad.AndroidMultiPartEntity.ProgressListener;
-import com.app.movein.postad.utils.AminitiesAdapter;
 import com.app.movein.postad.utils.AudioPlay;
-import com.app.movein.postad.utils.IAminitiesAdapter;
 import com.app.movein.postad.utils.IRadioAdapterData;
 import com.app.movein.postad.utils.RadioAdapter;
 import com.loopj.android.http.AsyncHttpClient;
@@ -80,15 +85,14 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.squareup.picasso.Picasso;
 
 public class PostAdActivity extends Activity implements View.OnClickListener,
-		IRadioAdapterData, IAminitiesAdapter {
-	private Spinner mPreferenceSpinner, mAminitiesSpinnerFlat,
-			mAminitiesSpinnerBuilding;
+		IRadioAdapterData {
+	private Spinner mPreferenceSpinner; 
 	private TextView mArea, mMainArea;
 	private String[] mFlat = { "Television", "Fridge", "Wi-Fi",
 			"Washing Machine", "AC", "Geyser", "Bed", "Mattress", "Wardrobe",
 			"Cook" };
 	private String[] mBuilding = { "Elevator", "Security Guard", "Parking",
-			"Gym", "Pool", "Club", "Power Backup", "24/7 Wter Supply" };
+			"Gym", "Pool", "Club", "Power Backup", "24/7 Water Supply" };
 	private String[] mRadioFinalValues, mFlatAminitiesFinalValues,
 			mBuildingAminitiesFinalValues;
 	private TextView mPhotos, mTakePhotos, mDatePicker, mAudioAlbumTitle;
@@ -108,7 +112,7 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 	private String mDepositVal;
 	private CheckBox mRentNegotiable, mDepositNegotiable, mContactNumberCheck;
 	private EditText mRent, mDeposit, mDescription, mFlatAminitiesOthers,
-			mBuildingAminitiesOthers, mContactNumber;
+			mBuildingAminitiesOthers, mContactNumber,mAminitiesFlat,mAminitiesBuilding;
 	@SuppressWarnings("deprecation")
 	private Gallery mGallery;
 	String[] images;
@@ -144,7 +148,12 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 	private AsyncHttpClient mAsyncHttpClient;
 	private StringBuilder mFlatValueOthers = new StringBuilder();
 	private StringBuilder mBuildingValueOthers = new StringBuilder();
-
+	private StringBuilder mBuildingAminitiesValue;
+	private StringBuilder mFlatAminitiesValue;
+	private AlertDialog mFlatDialog,mBuildingDialog;
+	 private  AlertDialog.Builder mFlatbuilder,mBuildingBuilder;
+	 private String  tv="0",fridge="0",ac="0",washing_machine="0",geyser="0",wifi="0",beds="0",wardrobes="0",cook="0";
+	 private String  elevator="0",security="0",parking="0",gym="0",sports_club="0",pool="0",power_backup="0",water_supply="0";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -195,12 +204,205 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 		// Start ofspinner for preference and aminities
 		mPreferenceSpinner = (Spinner) findViewById(R.id.mpreferencespinner);
 		mPreferenceSpinner.setAdapter(new RadioAdapter(this, this));
-		mAminitiesSpinnerFlat = (Spinner) findViewById(R.id.maminitiesspinnerflat);
-		mAminitiesSpinnerFlat.setAdapter(new AminitiesAdapter(this, mFlat,
-				this, true));
-		mAminitiesSpinnerBuilding = (Spinner) findViewById(R.id.maminitiesspinnerbuilding);
-		mAminitiesSpinnerBuilding.setAdapter(new AminitiesAdapter(this,
-				mBuilding, this, false));
+		mAminitiesFlat=(EditText) findViewById(R.id.maminitiesflat);
+		 		mAminitiesFlat.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				 final ArrayList<Integer> seletedItems=new ArrayList<Integer>();
+			       
+				 mFlatbuilder = new AlertDialog.Builder(PostAdActivity.this);
+
+			        mFlatbuilder.setTitle("Select Flat Aminities");
+			        mFlatbuilder.setMultiChoiceItems(mFlat, null,
+			                new DialogInterface.OnMultiChoiceClickListener() {
+			         // indexSelected contains the index of item (of which checkbox checked)
+			         @SuppressWarnings("unchecked")
+					@Override
+			         public void onClick(DialogInterface dialog, int indexSelected,
+			                 boolean isChecked) {
+			             if (isChecked) {
+			               
+			                 seletedItems.add(indexSelected);
+			              
+			                 
+			             } else if (seletedItems.contains(indexSelected)) {
+			                 // Else, if the item is already in the array, remove it 
+			                 // write your code when user Uchecked the checkbox 
+			                 seletedItems.remove(Integer.valueOf(indexSelected));
+			             }
+			         }
+			     })
+			      // Set the action buttons
+			     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			         @Override
+			         public void onClick(DialogInterface dialog, int id) {
+			        	ListView list=((AlertDialog)mFlatDialog).getListView();
+			        	 mFlatAminitiesValue = new StringBuilder();
+			        	 for(int i=0;i<list.getCount();i++){
+			        	 boolean checked=list.isItemChecked(i);
+			        	 if(checked)
+			        	 {
+			        		if(mFlatAminitiesValue.length() >0)
+			        			 mFlatAminitiesValue.append(",");
+			        		 mFlatAminitiesValue.append(list.getItemAtPosition(i));
+			        		 if(list.getItemAtPosition(i).toString().equalsIgnoreCase("tv"))
+			        		 {
+			        			 tv="1";
+			        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("fridge"))
+			        		 {
+			        			 fridge="1";
+			        			 
+			        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("ac"))
+			        		 {
+			        			 ac="1";
+			        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("washing machine"))
+			        		 {
+			        			 washing_machine="1";
+			        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("geyser"))
+			        		 {
+			        			geyser="1"; 
+			        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("wifi"))
+			        		 {
+			        			 wifi="1";
+			        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("beds"))
+			        		 {
+			        			 beds="1";
+			        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("wardrobes"))
+			        		 {
+			        			 wardrobes="1";
+			        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("cook"))
+			        		 {
+			        			 cook="1";
+			        		 }
+			        		 
+			        	 }
+			        	 }
+			        	 
+			        	 mAminitiesFlat.setText(mFlatAminitiesValue.toString());
+			             //  Your code when user clicked on OK
+			             //  You can write the code  to save the selected item here
+			            
+			         }
+			     })
+			     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			         @Override
+			         public void onClick(DialogInterface dialog, int id) {
+			        	 dialog.dismiss();
+			            //  Your code when user clicked on Cancel
+			           
+			         }
+			     });
+
+			        mFlatDialog = mFlatbuilder.create();//AlertDialog dialog; create like this outside onClick
+			        mFlatDialog.show();
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		   
+		mAminitiesBuilding=(EditText) findViewById(R.id.maminitiesbuilding);
+		 
+		mAminitiesBuilding.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				 final ArrayList<Integer> seletedItems=new ArrayList<Integer>();
+			       
+				 mBuildingBuilder = new AlertDialog.Builder(PostAdActivity.this);
+			        mBuildingBuilder.setTitle("Select The Difficulty Level");
+			        mBuildingBuilder.setMultiChoiceItems(mBuilding, null,
+			                new DialogInterface.OnMultiChoiceClickListener() {
+			         // indexSelected contains the index of item (of which checkbox checked)
+			         @SuppressWarnings("unchecked")
+					@Override
+			         public void onClick(DialogInterface dialog, int indexSelected,
+			                 boolean isChecked) {
+			             if (isChecked) {
+			                 // If the user checked the item, add it to the selected items
+			                 // write your code when user checked the checkbox 
+			                 seletedItems.add(indexSelected);
+			                // mBuildingValues.append(seletedItems.get(indexSelected));
+			                 
+			             } else if (seletedItems.contains(indexSelected)) {
+			                 // Else, if the item is already in the array, remove it 
+			                 // write your code when user Uchecked the checkbox 
+			                 seletedItems.remove(Integer.valueOf(indexSelected));
+			             }
+			         }
+			     })
+			      // Set the action buttons
+			     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			         @Override
+			         public void onClick(DialogInterface dialog, int id) {
+
+				        	ListView list=((AlertDialog)mBuildingDialog).getListView();
+				        	 mBuildingAminitiesValue = new StringBuilder();
+				        	 for(int i=0;i<list.getCount();i++){
+				        	 boolean checked=list.isItemChecked(i);
+				        	 if(checked)
+				        	 {
+				        		 if(mBuildingAminitiesValue.length() >0)
+				        			 mBuildingAminitiesValue.append(",");
+				        		 mBuildingAminitiesValue.append(list.getItemAtPosition(i));
+				        		 if(list.getItemAtPosition(i).toString().equalsIgnoreCase("elevator"))
+				        		 {
+				        			 elevator="1";
+				        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("security"))
+				        		 {
+				        			 security="1";
+				        			 
+				        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("parking"))
+				        		 {
+				        			 parking="1";
+				        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("gym"))
+				        		 {
+				        			 gym="1";
+				        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("sports_club"))
+				        		 {
+				        			 sports_club="1";
+				        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("pool"))
+				        		 {
+				        			 pool="1";
+				        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("power_backup"))
+				        		 {
+				        			 power_backup="1";
+				        		 }else if(list.getItemAtPosition(i).toString().equalsIgnoreCase("water_supply"))
+				        		 {
+				        			 water_supply="1";
+				        		 }
+				        		 
+				        	 }
+				        	 }
+				        	 
+				        	 mAminitiesBuilding.setText(mBuildingAminitiesValue.toString());
+				             //  Your code when user clicked on OK
+				             //  You can write the code  to save the selected item here
+				            
+				         
+			            
+			         }
+			     })
+			     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			         @Override
+			         public void onClick(DialogInterface dialog, int id) {
+			        	 dialog.dismiss();
+			            //  Your code when user clicked on Cancel
+			           
+			         }
+			     });
+
+			        mBuildingDialog = mBuildingBuilder.create();//AlertDialog dialog; create like this outside onClick
+			        mBuildingDialog.show();   
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+
+
+		
 		// End of spinner for preference nd aminities
 		// Start of toggle button(looking for)
 		mRadioLook = (RadioGroup) findViewById(R.id.toggleGrouplooking);
@@ -670,10 +872,10 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 					mToggleLook.setChecked(true);
 					mToggleLook.setTextColor(R.color.app_color);
 					mToggleLookValue = mToggleLook.getText().toString();
-					// Log.i("MI", "valLook=" + val);
+					
 				}
 
-				// onToggle(view);
+				
 			}
 		}
 	};
@@ -1227,7 +1429,7 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 					File mVideoFile = new File(mVideoFilePath);
 					entity.addPart("video", new FileBody(mVideoFile));
 				}
-
+				
 				entity.addPart("main_location", new StringBody(mAddressString));
 
 				mMainAreaString = mMainArea.getText().toString();
@@ -1236,6 +1438,14 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 				entity.addPart("rent", new StringBody(mRentVal));
 
 				entity.addPart("deposit", new StringBody(mDepositVal));
+				//File files;
+				File[] files=new File[mImgPaths.size()];
+				for(int i=0;i<mImgPaths.size();i++)
+				{
+					files[i]=new File(mImgPaths.get(i));
+				
+				entity.addPart("image"+(i+1),new FileBody(files[i]));
+				}
 
 				// Extra parameters if you want to pass to server
 				// entity.addPart("flat_aminities_others",
@@ -1256,7 +1466,29 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 						.getText().toString()));
 
 				entity.addPart("email", new StringBody("rgupta993@gmail.com"));
-
+				/*entity.addPart("flat_amenities",new StringBody(mFlatAminitiesValue.toString()));
+				entity.addPart("building_aminities",new StringBody(mBuildingAminitiesValue.toString()));*/
+				entity.addPart("television",new StringBody(tv));
+				entity.addPart("fridge",new StringBody(fridge));
+				entity.addPart("ac",new StringBody(ac));
+				entity.addPart("washing_machine",new StringBody(washing_machine));
+				entity.addPart("geyser",new StringBody(geyser));
+				entity.addPart("wifi",new StringBody(wifi));
+				entity.addPart("beds",new StringBody(beds));
+				entity.addPart("wardrobes",new StringBody(wardrobes));
+				entity.addPart("cook",new StringBody(cook));
+				entity.addPart("elevator",new StringBody(elevator));
+				entity.addPart("security",new StringBody(security));
+				entity.addPart("parking",new StringBody(parking));
+				entity.addPart("gym",new StringBody(gym));
+				entity.addPart("sports_club",new StringBody(sports_club));
+				entity.addPart("pool",new StringBody(pool));
+				entity.addPart("power_backup",new StringBody(power_backup));
+				entity.addPart("water_supply",new StringBody(water_supply));
+			
+				
+				
+				
 				totalSize = entity.getContentLength();
 				httppost.setEntity(entity);
 
@@ -1351,24 +1583,6 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 
 	}
 
-	@Override
-	public void setAnimitiesAdapterValue(String[] value, boolean result) {/*
-		if (result) {
-			mFlatAminitiesFinalValues = value;
-			for (int i = 0; i < mFlatAminitiesFinalValues.length; i++) {
-				Toast.makeText(mContext,
-						"" + mFlatAminitiesFinalValues[i].toString(), 0).show();
-			}
-		} else {
-			mBuildingAminitiesFinalValues = value;
-			for (int i = 0; i < mBuildingAminitiesFinalValues.length; i++) {
-				Toast.makeText(mContext,
-						"" + mBuildingAminitiesFinalValues[i].toString(), 0)
-						.show();
-			}
-		}
-		// TODO Auto-generated method stub
 
-	*/}
 
 }
