@@ -523,7 +523,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20.0dip"
             android:gravity="center_vertical"
-            android:onClick="showDatePickerDialog"
             android:text="@string/select_date"
             android:textColor="@color/divider" />
 

@@ -567,7 +567,7 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 			public void onClick(View v) {
 				if (mAudioFilePath == null) {
 					Toast.makeText(getApplicationContext(),
-							"PLease upload an audio", 0).show();
+							"PLease upload an audio", Toast.LENGTH_SHORT).show();
 
 				} else {
 					Intent intent = new Intent(PostAdActivity.this,
@@ -618,7 +618,7 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 			public void onClick(View v) {
 				if (mVideoFilePath == null) {
 					Toast.makeText(getApplicationContext(),
-							"PLease upload a video", 0).show();
+							"PLease upload a video", Toast.LENGTH_SHORT).show();
 				} else {
 					Intent i = new Intent(PostAdActivity.this,
 							com.app.movein.postad.utils.VideoPlay.class);
@@ -639,27 +639,27 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 			public void onClick(View v) {
 				
 				if (mAddressString == null) {
-					Toast.makeText(mContext, "Address can't be null", 0).show();
+					Toast.makeText(mContext, "Address can't be null", Toast.LENGTH_SHORT).show();
 				} else if (mRentVal == null) {
-					Toast.makeText(mContext, "Please enter rent value", 0).show();
+					Toast.makeText(mContext, "Please enter rent value", Toast.LENGTH_SHORT).show();
 						
 				} else if (mDepositVal == null) {
-					Toast.makeText(mContext, "Please enter deposit value", 0).show();
+					Toast.makeText(mContext, "Please enter deposit value", Toast.LENGTH_SHORT).show();
 						
 
 				} else if (mContactNumber.getText().toString() == null) {
-					Toast.makeText(mContext, "Mobile Number can't be null", 0).show();
+					Toast.makeText(mContext, "Mobile Number can't be null", Toast.LENGTH_SHORT).show();
 							
 				} else if (mToggleLookValue == null) {
-					Toast.makeText(mContext, "Please specify gender", 0).show();
+					Toast.makeText(mContext, "Please specify gender", Toast.LENGTH_SHORT).show();
 				} else if (mToggleFlatNoValue == null) {
 					Toast.makeText(mContext,
-							"Please choose number of flatmates", 0).show();
+							"Please choose number of flatmates", Toast.LENGTH_SHORT).show();
 				} else if (mDatePicker.getText().toString() == null) {
-					Toast.makeText(mContext, "Date can't be null", 0).show();
+					Toast.makeText(mContext, "Date can't be null", Toast.LENGTH_SHORT).show();
 				}else if(mContactNumberRadio==null)
 				{
-					Toast.makeText(mContext, "Slect the visibility mode for contact number", 0).show();
+					Toast.makeText(mContext, "Slect the visibility mode for contact number", Toast.LENGTH_SHORT).show();
 					
 				}else {
 				
@@ -695,7 +695,7 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 			public void onClick(View v) {
 
 				if (mFlatAminitiesOthers.getText().toString() == null) {
-					Toast.makeText(mContext, "Enter a Text", 0).show();
+					Toast.makeText(mContext, "Enter a Text", Toast.LENGTH_SHORT).show();
 				} else {
 					if (mFrameOthers1.getVisibility() == View.GONE) {
 						mFrameOthers1.setVisibility(View.VISIBLE);
@@ -722,7 +722,7 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 						mFlatValueOthers.append(mFlatAminitiesOthers.getText()
 								.toString());
 					} else {
-						Toast.makeText(mContext, "Max 4 are allowed", 0).show();
+						Toast.makeText(mContext, "Max 4 are allowed", Toast.LENGTH_SHORT).show();
 					}
 
 				}
@@ -759,7 +759,7 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 			public void onClick(View v) {
 
 				if (mBuildingAminitiesOthers.getText().toString() == null) {
-					Toast.makeText(mContext, "Enter a Text", 0).show();
+					Toast.makeText(mContext, "Enter a Text", Toast.LENGTH_SHORT).show();
 				} else {
 					if (mFrameOthers5.getVisibility() == View.GONE) {
 						mFrameOthers5.setVisibility(View.VISIBLE);
@@ -786,7 +786,7 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 						mBuildingValueOthers.append(mBuildingAminitiesOthers
 								.getText().toString());
 					} else {
-						Toast.makeText(mContext, "Max 4 are allowed", 0).show();
+						Toast.makeText(mContext, "Max 4 are allowed", Toast.LENGTH_SHORT).show();
 					}
 
 				}

@@ -22,7 +22,7 @@ public class GalleryAdapter extends BaseAdapter
 
   public GalleryAdapter(Context paramContext)
   {
-    this.infalter = ((LayoutInflater)paramContext.getSystemService("layout_inflater"));
+    this.infalter = ((LayoutInflater)paramContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     this.mContext = paramContext;
   }
 
@@ -92,7 +92,7 @@ public class GalleryAdapter extends BaseAdapter
       localViewHolder.imgQueue = ((ImageView)paramView.findViewById(R.id.imgQueue));
       localViewHolder.imgQueueMultiSelected = ((ImageView)paramView.findViewById(R.id.imgQueueMultiSelected));
       if (this.isActionMultiplePick)
-        localViewHolder.imgQueueMultiSelected.setVisibility(0);
+        localViewHolder.imgQueueMultiSelected.setVisibility(View.VISIBLE);
     }
     while (true)
     {

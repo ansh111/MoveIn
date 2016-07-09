@@ -88,7 +88,7 @@ public class OTPConfirmation extends Activity {
 				String otpEnter=ed.getText().toString();
 				if(otpEnter ==null)
 				{
-					Toast.makeText(getBaseContext(),"Enter otp",0).show();
+					Toast.makeText(getBaseContext(),"Enter otp",Toast.LENGTH_SHORT).show();
 				}
 				else
 				{
@@ -97,14 +97,14 @@ public class OTPConfirmation extends Activity {
 					if(otpFinal==otpGen)
 					{
 					
-						Toast.makeText(getBaseContext(), "Authentication Successful", 0).show();
+						Toast.makeText(getBaseContext(), "Authentication Successful", Toast.LENGTH_SHORT).show();
 						
 						/*Intent i=new Intent(OTPConfirmation.this,com.FlatKhoj.NDrawerPost.PostActivity.class);
 						startActivity(i);*/
 					}
 					else
 					{
-						Toast.makeText(getBaseContext(),"Please enter correct OTP", 0).show();
+						Toast.makeText(getBaseContext(),"Please enter correct OTP", Toast.LENGTH_SHORT).show();
 					}
 				}
 				// TODO Auto-generated method stub
