@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-   <!-- <com.facebook.widget.LoginButton
-        android:id="@+id/fb_login_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        facebook:confirm_logout="false"
-        facebook:fetch_user_info="true" />-->
+    <!-- <com.facebook.widget.LoginButton
+         android:id="@+id/fb_login_button"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="5dp"
+         facebook:confirm_logout="false"
+         facebook:fetch_user_info="true" />-->
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btn_sign_in"
@@ -26,7 +25,7 @@
         android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         android:visibility="gone"
-        android:weightSum="3" >
+        android:weightSum="3">
 
         <ImageView
             android:id="@+id/imgProfilePic"
@@ -39,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="2"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtName"

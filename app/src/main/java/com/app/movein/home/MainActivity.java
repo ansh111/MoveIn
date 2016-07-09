@@ -1,11 +1,6 @@
 package com.app.movein.home;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Criteria;
@@ -17,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -27,26 +21,29 @@ import android.widget.Toast;
 import com.app.movein.R;
 import com.app.movein.search.FlatSearchActivity;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class MainActivity extends Activity implements LocationListener, View.OnClickListener {
-    Button btnSignIn;
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
     // maps button
-
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+    protected LocationManager locationManager;
+    Button btnSignIn;
     Button btnPost;
-
     boolean canGetLocation = false;
     Location location;
     double latitude;
     double longitude;
     private String mAddress, mLocality, mSubLocality;
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
-    protected LocationManager locationManager;
     private boolean doubleBackToExitPressedOnce = false;
     private Button btnSearch;
-    private TextView mAdvanceSearch,mSeekPeopleText,mSeekRentText;
+    private TextView mAdvanceSearch, mSeekPeopleText, mSeekRentText;
     private LinearLayout mAdvanceOptons;
-    private SeekBar mSeekPeople,mSeekRent;
-    private int mSeekPeopleValue,mSeekRentValue;
+    private SeekBar mSeekPeople, mSeekRent;
+    private int mSeekPeopleValue, mSeekRentValue;
+
     // maps button
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +51,7 @@ public class MainActivity extends Activity implements LocationListener, View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAdvanceSearch = (TextView) findViewById(R.id.advance_search);
-        mAdvanceOptons= (LinearLayout) findViewById(R.id.advance_search_options_ll);
+        mAdvanceOptons = (LinearLayout) findViewById(R.id.advance_search_options_ll);
         mAdvanceOptons.setVisibility(View.GONE);
         mAdvanceSearch.setOnClickListener(this);
         btnSignIn = (Button) findViewById(R.id.btnsignin);
@@ -210,12 +207,12 @@ public class MainActivity extends Activity implements LocationListener, View.OnC
         mAdvanceOptons.setVisibility(View.VISIBLE);
         mAdvanceOptons.setAlpha(0.0f);
         mAdvanceOptons.animate().alpha(1.0f).setDuration(2000).start();
-        mSeekPeople= (SeekBar) findViewById(R.id.search_seek_people);
-        mSeekPeopleText= (TextView) findViewById(R.id.progress_no);
+        mSeekPeople = (SeekBar) findViewById(R.id.search_seek_people);
+        mSeekPeopleText = (TextView) findViewById(R.id.progress_no);
         mSeekPeople.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mSeekPeopleValue=progress;
+                mSeekPeopleValue = progress;
             }
 
             @Override
@@ -225,15 +222,15 @@ public class MainActivity extends Activity implements LocationListener, View.OnC
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mSeekPeopleText.setText("" + mSeekPeopleValue + "/"+ seekBar.getMax());
+                mSeekPeopleText.setText("" + mSeekPeopleValue + "/" + seekBar.getMax());
             }
         });
-        mSeekRent= (SeekBar) findViewById(R.id.search_seek_rent);
-        mSeekRentText= (TextView) findViewById(R.id.progress_rent);
+        mSeekRent = (SeekBar) findViewById(R.id.search_seek_rent);
+        mSeekRentText = (TextView) findViewById(R.id.progress_rent);
         mSeekRent.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mSeekRentValue=progress;
+                mSeekRentValue = progress;
             }
 
             @Override
@@ -243,13 +240,13 @@ public class MainActivity extends Activity implements LocationListener, View.OnC
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mSeekRentText.setText(""+ mSeekRentValue + "/" + seekBar.getMax());
+                mSeekRentText.setText("" + mSeekRentValue + "/" + seekBar.getMax());
             }
         });
         mAdvanceOptons.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() ==MotionEvent.ACTION_DOWN) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     mAdvanceSearch.animate().setDuration(2000).alpha(1.0f).start();
                     mAdvanceOptons.animate().setDuration(2000).alpha(0.0f).start();
                 }

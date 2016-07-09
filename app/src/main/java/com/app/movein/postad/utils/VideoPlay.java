@@ -1,7 +1,6 @@
 package com.app.movein.postad.utils;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,8 +17,8 @@ public class VideoPlay extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.postvideoplay);
-        savedInstanceState=getIntent().getExtras();
-        String mVideoFilePath=savedInstanceState.getString("VideoPath");
+        savedInstanceState = getIntent().getExtras();
+        String mVideoFilePath = savedInstanceState.getString("VideoPath");
 
         final VideoView videoView =
                 (VideoView) findViewById(R.id.postvideoplayer);
@@ -32,16 +31,16 @@ public class VideoPlay extends Activity {
         videoView.setMediaController(mediaController);
 
         videoView.setOnPreparedListener(new
-                MediaPlayer.OnPreparedListener()  {
-                     @Override
-                     public void onPrepared(MediaPlayer mp) {
-                              Log.i(TAG, "Duration = " + 
-					videoView.getDuration());
-                     }
-         });
+                                                MediaPlayer.OnPreparedListener() {
+                                                    @Override
+                                                    public void onPrepared(MediaPlayer mp) {
+                                                        Log.i(TAG, "Duration = " +
+                                                                videoView.getDuration());
+                                                    }
+                                                });
 
         videoView.start();
 
-    
-}
+
+    }
 }

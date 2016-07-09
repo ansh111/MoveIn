@@ -5,19 +5,19 @@
     android:background="#ffeeeeee"
     android:paddingLeft="8.0dip"
     android:paddingRight="8.0dip"
-    android:scrollbars="none" >
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8.0dip" >
+        android:padding="8.0dip">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20.0dip"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -71,13 +71,13 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8.0dip"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
@@ -105,7 +105,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="4.0dip"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <ToggleButton
                     android:id="@+id/toggle_male"
@@ -149,13 +149,13 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8.0dip"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
@@ -194,7 +194,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="4.0dip"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <ToggleButton
                     android:id="@+id/flatmate_one"
@@ -263,12 +263,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20.0dip"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
@@ -365,7 +365,7 @@
             android:columnCount="4"
             android:columnOrderPreserved="false"
             android:src="@drawable/ic_launcher"
-            android:useDefaultMargins="true" >
+            android:useDefaultMargins="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -473,7 +473,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20.0dip"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -547,8 +547,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:prompt="@string/preference_spinner"
-            android:spinnerMode="dialog" >
-        </Spinner>
+            android:spinnerMode="dialog"></Spinner>
 
         <TextView
             android:layout_width="fill_parent"
@@ -585,7 +584,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20.0dip"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -601,144 +600,147 @@
                 android:layout_marginBottom="2.0dip"
                 android:layout_marginTop="8.0dip"
                 android:background="@color/divider" />
-			<RelativeLayout 
-			      android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
-                android:id="@+id/postflatrelativelayout">
-            <FrameLayout
-                android:id="@+id/postframeothers1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:padding="5dp"
-                android:visibility="gone"
-                >
+
+            <RelativeLayout
+                android:id="@+id/postflatrelativelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/postframeothers1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:padding="5dp"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/postaddedothers1"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+
+                        android:clickable="false"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/postdeleteothers1"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+
+                        android:background="@drawable/delete" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/postframeothers2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_toEndOf="@+id/postframeothers1"
+                    android:padding="5dp"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/postaddedothers2"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+
+                        android:clickable="false"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/postdeleteothers2"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+
+                        android:background="@drawable/delete" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/postframeothers3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_toEndOf="@+id/postframeothers2"
+                    android:padding="5dp"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/postaddedothers3"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+
+                        android:clickable="false"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/postdeleteothers3"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+
+                        android:background="@drawable/delete" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/postframeothers4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_toEndOf="@+id/postframeothers3"
+                    android:padding="5dp"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/postaddedothers4"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+
+                        android:clickable="false"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/postdeleteothers4"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+
+                        android:background="@drawable/delete" />
+                </FrameLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/postaminitiesflatothers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+
+                    android:hint="@string/others_flataminities"
+                    android:textColor="@color/divider"
+                    android:textSize="12sp" />
 
                 <Button
-                    android:id="@+id/postaddedothers1"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                  
-                    android:singleLine="true"
-                    android:textSize="12sp"
-                    android:textStyle="bold" 
-                    android:clickable="false"/>
+                    android:id="@+id/postaminitiesflataddothers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/addothers" />
 
-                <Button
-                    android:id="@+id/postdeleteothers1"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp" 
-                    
-                    android:background="@drawable/delete" />
-            </FrameLayout>
-              <FrameLayout
-                android:id="@+id/postframeothers2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:padding="5dp"
-                android:visibility="gone"
-                android:layout_toEndOf="@+id/postframeothers1"
-                >
-
-                <Button
-                    android:id="@+id/postaddedothers2"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                  
-                    android:singleLine="true"
-                    android:textSize="12sp"
-                    android:textStyle="bold" 
-                    android:clickable="false"/>
-
-                <Button
-                    android:id="@+id/postdeleteothers2"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp" 
-                    
-                    android:background="@drawable/delete" />
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/postframeothers3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:padding="5dp"
-                android:visibility="gone"
-                android:layout_toEndOf="@+id/postframeothers2"
-                >
-
-                <Button
-                    android:id="@+id/postaddedothers3"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                  
-                    android:singleLine="true"
-                    android:textSize="12sp"
-                    android:textStyle="bold" 
-                    android:clickable="false"/>
-
-                <Button
-                    android:id="@+id/postdeleteothers3"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp" 
-                    
-                    android:background="@drawable/delete" />
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/postframeothers4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:padding="5dp"
-                android:visibility="gone"
-                android:layout_toEndOf="@+id/postframeothers3"
-                >
-
-                <Button
-                    android:id="@+id/postaddedothers4"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                  
-                    android:singleLine="true"
-                    android:textSize="12sp"
-                    android:textStyle="bold" 
-                    android:clickable="false"/>
-
-                <Button
-                    android:id="@+id/postdeleteothers4"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp" 
-                    
-                    android:background="@drawable/delete" />
-            </FrameLayout>
-           
-           </RelativeLayout>
-			<LinearLayout 
-			    
-			    android:layout_width="match_parent"
-			    android:layout_height="0dp"
-			    android:layout_weight="1"
-			    android:orientation="horizontal"
-			    >
-            <EditText
-                android:id="@+id/postaminitiesflatothers"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/others_flataminities"
-               
-                android:textColor="@color/divider"
-                android:textSize="12sp" 
-               android:layout_weight="0.7"/>
-            <Button 
-                android:id="@+id/postaminitiesflataddothers"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" 
-                android:layout_weight="0.3"
-                android:text="@string/addothers"/>
-            
             </LinearLayout>
-                
+
         </LinearLayout>
 
         <TextView
@@ -754,14 +756,13 @@
             android:id="@+id/maminitiesspinnerbuilding"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:prompt="@string/aminities_spinnerbuilding" >
-        </Spinner>
+            android:prompt="@string/aminities_spinnerbuilding"></Spinner>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20.0dip"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -777,149 +778,150 @@
                 android:layout_marginBottom="2.0dip"
                 android:layout_marginTop="8.0dip"
                 android:background="@color/divider" />
-            <RelativeLayout 
-			      android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
-              
+
+            <RelativeLayout
                 android:id="@+id/postbuildingreltivelayout"
-               >
-            <FrameLayout
-                android:id="@+id/postframeothers5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:padding="5dp"
-                android:visibility="gone"
-               
-                >
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/postframeothers5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:padding="5dp"
+                    android:visibility="gone"
+
+                    >
+
+                    <Button
+                        android:id="@+id/postaddedothers5"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+
+                        android:clickable="false"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/postdeleteothers5"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+
+                        android:background="@drawable/delete" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/postframeothers6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_toEndOf="@+id/postframeothers5"
+                    android:padding="5dp"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/postaddedothers6"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+
+                        android:clickable="false"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/postdeleteothers6"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+
+                        android:background="@drawable/delete" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/postframeothers7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_toEndOf="@+id/postframeothers6"
+                    android:padding="5dp"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/postaddedothers7"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+
+                        android:clickable="false"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/postdeleteothers7"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+
+                        android:background="@drawable/delete" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/postframeothers8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_toEndOf="@+id/postframeothers7"
+                    android:padding="5dp"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/postaddedothers8"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+
+                        android:clickable="false"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/postdeleteothers8"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+
+                        android:background="@drawable/delete" />
+                </FrameLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/postaminitiesbuildingothers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+
+                    android:hint="@string/others_buildingaminities"
+                    android:textColor="@color/divider"
+                    android:textSize="12sp" />
 
                 <Button
-                    android:id="@+id/postaddedothers5"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                  
-                    android:singleLine="true"
-                    android:textSize="12sp"
-                    android:textStyle="bold" 
-                    android:clickable="false"/>
+                    android:id="@+id/postaminitiesbuildingaddothers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/addothers" />
 
-                <Button
-                    android:id="@+id/postdeleteothers5"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp" 
-                    
-                    android:background="@drawable/delete" />
-            </FrameLayout>
-              <FrameLayout
-                android:id="@+id/postframeothers6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:padding="5dp"
-                android:visibility="gone"
-                android:layout_toEndOf="@+id/postframeothers5"
-                >
-
-                <Button
-                    android:id="@+id/postaddedothers6"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                  
-                    android:singleLine="true"
-                    android:textSize="12sp"
-                    android:textStyle="bold" 
-                    android:clickable="false"/>
-
-                <Button
-                    android:id="@+id/postdeleteothers6"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp" 
-                    
-                    android:background="@drawable/delete" />
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/postframeothers7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:padding="5dp"
-                android:visibility="gone"
-                android:layout_toEndOf="@+id/postframeothers6"
-                >
-
-                <Button
-                    android:id="@+id/postaddedothers7"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                  
-                    android:singleLine="true"
-                    android:textSize="12sp"
-                    android:textStyle="bold" 
-                    android:clickable="false"/>
-
-                <Button
-                    android:id="@+id/postdeleteothers7"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp" 
-                    
-                    android:background="@drawable/delete" />
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/postframeothers8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:padding="5dp"
-                android:visibility="gone"
-                android:layout_toEndOf="@+id/postframeothers7"
-                >
-
-                <Button
-                    android:id="@+id/postaddedothers8"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                  
-                    android:singleLine="true"
-                    android:textSize="12sp"
-                    android:textStyle="bold" 
-                    android:clickable="false"/>
-
-                <Button
-                    android:id="@+id/postdeleteothers8"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp" 
-                    
-                    android:background="@drawable/delete" />
-            </FrameLayout>
-           
-           </RelativeLayout>
-
-            <LinearLayout 
-			    
-			    android:layout_width="match_parent"
-			    android:layout_height="0dp"
-			    android:layout_weight="1"
-			    android:orientation="horizontal"
-			    >
-           <EditText
-                android:id="@+id/postaminitiesbuildingothers"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/others_buildingaminities"
-               
-                android:textColor="@color/divider"
-                android:textSize="12sp" 
-                android:layout_weight="0.7"/>
-            <Button 
-                android:id="@+id/postaminitiesbuildingaddothers"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" 
-                android:layout_weight="0.3"
-                android:text="@string/addothers"
-                />
-            
             </LinearLayout>
-            
+
         </LinearLayout>
 
         <TextView
@@ -942,7 +944,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="1" >
+            android:weightSum="1">
 
             <EditText
                 android:id="@+id/postcontact_number"
@@ -967,7 +969,7 @@
             android:layout_width="match_parent"
             android:layout_height="118dp"
             android:gravity="center_horizontal|center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radio_male"
@@ -1020,13 +1022,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/postaudiolinearlayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/postaudiopreview"
@@ -1078,7 +1080,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/postvideopreview"
@@ -1121,8 +1123,7 @@
             android:id="@+id/postsubmit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/submit" >
-        </Button>
+            android:text="@string/submit"></Button>
     </LinearLayout>
 
 </ScrollView>

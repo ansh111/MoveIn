@@ -2,16 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-<TextView 
-    android:id="@+id/radiotext"
-    android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-<TextView 
-    android:id="@+id/radiobuttonhint"
-    android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/radiotext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/radiobuttonhint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="1.0dip"
@@ -23,21 +25,21 @@
         android:id="@+id/radioGrouppreference"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioption1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            
+
             android:textSize="12sp" />
 
         <RadioButton
             android:id="@+id/radioption2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           
+
             android:textSize="12sp" />
 
         <RadioButton
@@ -46,12 +48,13 @@
             android:layout_height="wrap_content"
             android:textSize="12sp" />
     </RadioGroup>
+
     <Button
         android:id="@+id/radioconfirmbutton"
         android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
-            android:text="Confirm"
-            
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+
         ></Button>
 
 </LinearLayout>

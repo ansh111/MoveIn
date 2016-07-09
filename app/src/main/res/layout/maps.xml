@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.app.movein.maps.GoogleMaps" >
+    tools:context="com.app.movein.maps.GoogleMaps">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="1" >
+        android:weightSum="1">
 
         <com.app.movein.maps.CustomAutoCompleteTextView
             android:id="@+id/atv_places"
@@ -27,24 +27,23 @@
             android:layout_alignParentRight="true"
             android:layout_weight="0.22"
             android:fitsSystemWindows="true"
-            android:text="Done" >
-        </Button>
-         <Button
+            android:text="Done"></Button>
+
+        <Button
             android:id="@+id/buttonLocationconfirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_weight="0.28"
             android:fitsSystemWindows="true"
-            android:text="Confirm" >
-        </Button>
+            android:text="Confirm"></Button>
     </LinearLayout>
 
     <fragment
         android:id="@+id/map"
         android:name="com.app.movein.maps.GoogleMaps"
+        class="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.google.android.gms.maps.MapFragment" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

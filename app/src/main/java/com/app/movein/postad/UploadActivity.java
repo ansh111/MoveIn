@@ -1,18 +1,5 @@
 package com.app.movein.postad;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -35,225 +22,233 @@ import android.widget.VideoView;
 import com.app.movein.R;
 import com.app.movein.postad.AndroidMultiPartEntity.ProgressListener;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class UploadActivity extends Activity {
-	// LogCat tag
-	private static final String TAG = UploadActivity.class.getSimpleName();
+    // LogCat tag
+    private static final String TAG = UploadActivity.class.getSimpleName();
+    public int THUMBSIZE = 64;
+    long totalSize = 0;
+    //	MediaPlayerFragment mPlayer;
+    View mFragment;
+    private ProgressBar progressBar;
+    private String filePath = null;
+    private TextView txtPercentage;
+    private ImageView imgPreview, videoPreview;
+    private VideoView vidPreview;
+    private Button btnUpload;
 
-	private ProgressBar progressBar;
-	private String filePath = null;
-	private TextView txtPercentage;
-	private ImageView imgPreview,videoPreview;
-	private VideoView vidPreview;
-	private Button btnUpload;
-	long totalSize = 0;
-	public int THUMBSIZE=64;
-//	MediaPlayerFragment mPlayer;
-	View mFragment;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_upload);
+        txtPercentage = (TextView) findViewById(R.id.txtPercentage);
+        btnUpload = (Button) findViewById(R.id.btnUpload);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        imgPreview = (ImageView) findViewById(R.id.imgPreview);
+        videoPreview = (ImageView) findViewById(R.id.videoPreview);
+        vidPreview = (VideoView) findViewById(R.id.VideoPreview);
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_upload);
-		txtPercentage = (TextView) findViewById(R.id.txtPercentage);
-		btnUpload = (Button) findViewById(R.id.btnUpload);
-		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		imgPreview = (ImageView) findViewById(R.id.imgPreview);
-		videoPreview=(ImageView) findViewById(R.id.videoPreview);
-		vidPreview = (VideoView) findViewById(R.id.VideoPreview);
-	
 
-		// Changing action bar background color
-	/*	getActionBar().setBackgroundDrawable(
+        // Changing action bar background color
+    /*	getActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor(getResources().getString(
 						R.color.action_bar))));
 */
-		// Receiving the data from previous activity
-		Intent i = getIntent();
+        // Receiving the data from previous activity
+        Intent i = getIntent();
 
-		// image or video path that is captured in previous activity
-		filePath = i.getStringExtra("filePath");
+        // image or video path that is captured in previous activity
+        filePath = i.getStringExtra("filePath");
 
-		// boolean flag to identify the media type, image or video
-		boolean isImage = i.getBooleanExtra("isImage", true);
-		boolean isVideo=i.getBooleanExtra("isVideo", true);
+        // boolean flag to identify the media type, image or video
+        boolean isImage = i.getBooleanExtra("isImage", true);
+        boolean isVideo = i.getBooleanExtra("isVideo", true);
 
-		if (filePath != null) {
-			// Displaying the image or video on the screen
-			previewMedia(isImage,isVideo);
-		} else {
-			Toast.makeText(getApplicationContext(),
-					"Sorry, file path is missing!", Toast.LENGTH_LONG).show();
-		}
+        if (filePath != null) {
+            // Displaying the image or video on the screen
+            previewMedia(isImage, isVideo);
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    "Sorry, file path is missing!", Toast.LENGTH_LONG).show();
+        }
 
-		btnUpload.setOnClickListener(new View.OnClickListener() {
+        btnUpload.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// uploading the file to server
-				new UploadFileToServer().execute();
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                // uploading the file to server
+                new UploadFileToServer().execute();
+            }
+        });
 
-	}
+    }
 
-	/**
-	 * Displaying captured image/video on the screen
-	 * */
-	private void previewMedia(boolean isImage,boolean isVideo) {
-		// Checking whether captured media is image or video
-		if (isImage && !isVideo) {
-			imgPreview.setVisibility(View.VISIBLE);
-			vidPreview.setVisibility(View.GONE);
-		//	mFragment.setVisibility(View.GONE);
-			// bimatp factory
-			BitmapFactory.Options options = new BitmapFactory.Options();
+    /**
+     * Displaying captured image/video on the screen
+     */
+    private void previewMedia(boolean isImage, boolean isVideo) {
+        // Checking whether captured media is image or video
+        if (isImage && !isVideo) {
+            imgPreview.setVisibility(View.VISIBLE);
+            vidPreview.setVisibility(View.GONE);
+            //	mFragment.setVisibility(View.GONE);
+            // bimatp factory
+            BitmapFactory.Options options = new BitmapFactory.Options();
 
-			// down sizing image as it throws OutOfMemory Exception for larger
-			// images
-			options.inSampleSize = 8;
+            // down sizing image as it throws OutOfMemory Exception for larger
+            // images
+            options.inSampleSize = 8;
 
-			final Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
+            final Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
 
-			//imgPreview.setImageBitmap(bitmap);
-			Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(filePath), THUMBSIZE, THUMBSIZE);
-			imgPreview.setImageBitmap(ThumbImage);
-		} else  {
-			if(!isImage && isVideo)
-			{
-			imgPreview.setVisibility(View.GONE);
-		
-			vidPreview.setVisibility(View.VISIBLE);
-		//	mFragment.setVisibility(View.GONE);
-			
-			vidPreview.setVideoPath(filePath);
-			// start playing
-			vidPreview.start();
-			Bitmap ThumbVideo=ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.MICRO_KIND);
-			videoPreview.setImageBitmap(ThumbVideo);
-			}
-			else
-			{
-				imgPreview.setVisibility(View.GONE);
-				
-				vidPreview.setVisibility(View.GONE);
-				//mFragment.setVisibility(View.VISIBLE);
-				Log.i("MI","fileAudio =" +filePath);
+            //imgPreview.setImageBitmap(bitmap);
+            Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(filePath), THUMBSIZE, THUMBSIZE);
+            imgPreview.setImageBitmap(ThumbImage);
+        } else {
+            if (!isImage && isVideo) {
+                imgPreview.setVisibility(View.GONE);
+
+                vidPreview.setVisibility(View.VISIBLE);
+                //	mFragment.setVisibility(View.GONE);
+
+                vidPreview.setVideoPath(filePath);
+                // start playing
+                vidPreview.start();
+                Bitmap ThumbVideo = ThumbnailUtils.createVideoThumbnail(filePath, MediaStore.Video.Thumbnails.MICRO_KIND);
+                videoPreview.setImageBitmap(ThumbVideo);
+            } else {
+                imgPreview.setVisibility(View.GONE);
+
+                vidPreview.setVisibility(View.GONE);
+                //mFragment.setVisibility(View.VISIBLE);
+                Log.i("MI", "fileAudio =" + filePath);
 //				setFragment(mPlayer,filePath);			
-				
-			}
-		}
-	}
 
-	/**
-	 * Uploading the file to server
-	 * */
-	private class UploadFileToServer extends AsyncTask<Void, Integer, String> {
-		@Override
-		protected void onPreExecute() {
-			// setting progress bar to zero
-			progressBar.setProgress(0);
-			super.onPreExecute();
-		}
+            }
+        }
+    }
 
-		@Override
-		protected void onProgressUpdate(Integer... progress) {
-			// Making progress bar visible
-			progressBar.setVisibility(View.VISIBLE);
+    /**
+     * Method to show alert dialog
+     */
+    private void showAlert(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message).setTitle("Response from Servers")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // do nothing
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
-			// updating progress bar value
-			progressBar.setProgress(progress[0]);
+    /**
+     * Uploading the file to server
+     */
+    private class UploadFileToServer extends AsyncTask<Void, Integer, String> {
+        @Override
+        protected void onPreExecute() {
+            // setting progress bar to zero
+            progressBar.setProgress(0);
+            super.onPreExecute();
+        }
 
-			// updating percentage value
-			txtPercentage.setText(String.valueOf(progress[0]) + "%");
-		}
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            // Making progress bar visible
+            progressBar.setVisibility(View.VISIBLE);
 
-		@Override
-		protected String doInBackground(Void... params) {
-			return uploadFile();
-		}
+            // updating progress bar value
+            progressBar.setProgress(progress[0]);
 
-		@SuppressWarnings("deprecation")
-		private String uploadFile() {
-			String responseString = null;
+            // updating percentage value
+            txtPercentage.setText(String.valueOf(progress[0]) + "%");
+        }
 
-			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(Config.FILE_UPLOAD_URL);
+        @Override
+        protected String doInBackground(Void... params) {
+            return uploadFile();
+        }
 
-			try {
-				AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
-						new ProgressListener() {
+        @SuppressWarnings("deprecation")
+        private String uploadFile() {
+            String responseString = null;
 
-							@Override
-							public void transferred(long num) {
-								publishProgress((int) ((num / (float) totalSize) * 100));
-							}
-						});
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(Config.FILE_UPLOAD_URL);
 
-				File sourceFile = new File(filePath);
+            try {
+                AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
+                        new ProgressListener() {
 
-				// Adding file data to http body
-				entity.addPart("image", new FileBody(sourceFile));
+                            @Override
+                            public void transferred(long num) {
+                                publishProgress((int) ((num / (float) totalSize) * 100));
+                            }
+                        });
 
-				// Extra parameters if you want to pass to server
-				entity.addPart("website",
-						new StringBody("www.androidhive.info"));
-				entity.addPart("email", new StringBody("abc@gmail.com"));
+                File sourceFile = new File(filePath);
 
-				totalSize = entity.getContentLength();
-				httppost.setEntity(entity);
+                // Adding file data to http body
+                entity.addPart("image", new FileBody(sourceFile));
 
-				// Making server call
-				HttpResponse response = httpclient.execute(httppost);
-				HttpEntity r_entity = response.getEntity();
+                // Extra parameters if you want to pass to server
+                entity.addPart("website",
+                        new StringBody("www.androidhive.info"));
+                entity.addPart("email", new StringBody("abc@gmail.com"));
 
-				int statusCode = response.getStatusLine().getStatusCode();
-				if (statusCode == 200) {
-					// Server response
-					responseString = EntityUtils.toString(r_entity);
-				} else {
-					responseString = "Error occurred! Http Status Code: "
-							+ statusCode;
-				}
+                totalSize = entity.getContentLength();
+                httppost.setEntity(entity);
 
-			} catch (ClientProtocolException e) {
-				responseString = e.toString();
-			} catch (IOException e) {
-				responseString = e.toString();
-			}
+                // Making server call
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity r_entity = response.getEntity();
 
-			return responseString;
+                int statusCode = response.getStatusLine().getStatusCode();
+                if (statusCode == 200) {
+                    // Server response
+                    responseString = EntityUtils.toString(r_entity);
+                } else {
+                    responseString = "Error occurred! Http Status Code: "
+                            + statusCode;
+                }
 
-		}
+            } catch (ClientProtocolException e) {
+                responseString = e.toString();
+            } catch (IOException e) {
+                responseString = e.toString();
+            }
 
-		@Override
-		protected void onPostExecute(String result) {
-			Log.e(TAG, "Response from server: " + result);
+            return responseString;
 
-			// showing the server response in an alert dialog
-			showAlert(result);
+        }
 
-			super.onPostExecute(result);
-		}
+        @Override
+        protected void onPostExecute(String result) {
+            Log.e(TAG, "Response from server: " + result);
 
-	}
+            // showing the server response in an alert dialog
+            showAlert(result);
 
-	/**
-	 * Method to show alert dialog
-	 * */
-	private void showAlert(String message) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(message).setTitle("Response from Servers")
-				.setCancelable(false)
-				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						// do nothing
-					}
-				});
-		AlertDialog alert = builder.create();
-		alert.show();
-	}
+            super.onPostExecute(result);
+        }
+
+    }
 	/*public void setFragment(android.app.Fragment fragment,String filepath)
     {    
    
