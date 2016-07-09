@@ -915,14 +915,10 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 	};
 
 	private boolean isDeviceSupportCamera() {
-		if (getApplicationContext().getPackageManager().hasSystemFeature(
-				PackageManager.FEATURE_CAMERA)) {
-			// this device has a camera
-			return true;
-		} else {
-			// no camera on this device
-			return false;
-		}
+		// this device has a camera
+// no camera on this device
+		return getApplicationContext().getPackageManager().hasSystemFeature(
+				PackageManager.FEATURE_CAMERA);
 	}
 
 	private void captureImage() {
@@ -1256,7 +1252,7 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 			}
 			String str;
 			for (ImageView localImageView2 = localImageView1;; localImageView2 = (ImageView) paramView) {
-				str = (String) mImgPaths.get(paramInt);
+				str = mImgPaths.get(paramInt);
 				Log.d("pic", paramInt + " - " + str);
 				if (!str.isEmpty())
 					break;
@@ -1367,11 +1363,11 @@ public class PostAdActivity extends Activity implements View.OnClickListener,
 	}
 
 	private String getAudioTitle(String filePath) {
-		MediaMetadataRetriever mediaMetadataRetriever = (MediaMetadataRetriever) new MediaMetadataRetriever();
+		MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
 		File mp3File = new File(filePath);
-		Uri uri = (Uri) Uri.fromFile(mp3File);
+		Uri uri = Uri.fromFile(mp3File);
 		mediaMetadataRetriever.setDataSource(this, uri);
-		String title = (String) mediaMetadataRetriever
+		String title = mediaMetadataRetriever
 				.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
 		if (title.equals("null")) {
 			return "UnTitled";

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Criteria;
@@ -64,7 +65,7 @@ public class MainActivity extends Activity implements LocationListener, View.OnC
         btnSearch.setOnClickListener(this);
 
         LocationManager locationManager = (LocationManager) this
-                .getSystemService(this.LOCATION_SERVICE);
+                .getSystemService(LOCATION_SERVICE);
 
         // Creating a criteria object to retrieve provider
         Criteria criteria = new Criteria();

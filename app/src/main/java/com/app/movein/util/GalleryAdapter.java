@@ -44,10 +44,10 @@ public class GalleryAdapter extends BaseAdapter
 
   public void changeSelection(View paramView, int paramInt)
   {
-    if (((CustomGallery)this.data.get(paramInt)).isSeleted);
-    for (((CustomGallery)this.data.get(paramInt)).isSeleted = false; ; ((CustomGallery)this.data.get(paramInt)).isSeleted = true)
+    if (this.data.get(paramInt).isSeleted);
+    for (this.data.get(paramInt).isSeleted = false; ; this.data.get(paramInt).isSeleted = true)
     {
-      ((ViewHolder)paramView.getTag()).imgQueueMultiSelected.setSelected(((CustomGallery)this.data.get(paramInt)).isSeleted);
+      ((ViewHolder)paramView.getTag()).imgQueueMultiSelected.setSelected(this.data.get(paramInt).isSeleted);
       return;
     }
   }
@@ -65,7 +65,7 @@ public class GalleryAdapter extends BaseAdapter
 
   public CustomGallery getItem(int paramInt)
   {
-    return (CustomGallery)this.data.get(paramInt);
+    return this.data.get(paramInt);
   }
 
   public long getItemId(int paramInt)
@@ -77,7 +77,7 @@ public class GalleryAdapter extends BaseAdapter
   {
     ArrayList localArrayList = new ArrayList();
     for (int i = 0; i < this.data.size(); i++)
-      if (((CustomGallery)this.data.get(i)).isSeleted)
+      if (this.data.get(i).isSeleted)
         localArrayList.add(this.data.get(i));
     return localArrayList;
   }
@@ -100,9 +100,9 @@ public class GalleryAdapter extends BaseAdapter
       localViewHolder.imgQueue.setTag(Integer.valueOf(paramInt));
       try
       {
-        Picasso.with(this.mContext).load(new File(((CustomGallery)this.data.get(paramInt)).sdcardPath)).resize(250, 250).centerCrop().into(localViewHolder.imgQueue);
+        Picasso.with(this.mContext).load(new File(this.data.get(paramInt).sdcardPath)).resize(250, 250).centerCrop().into(localViewHolder.imgQueue);
         if (this.isActionMultiplePick)
-          localViewHolder.imgQueueMultiSelected.setSelected(((CustomGallery)this.data.get(paramInt)).isSeleted);
+          localViewHolder.imgQueueMultiSelected.setSelected(this.data.get(paramInt).isSeleted);
         return paramView;
         /*localViewHolder.imgQueueMultiSelected.setVisibility(View.GONE);
         continue;
@@ -122,7 +122,7 @@ public class GalleryAdapter extends BaseAdapter
     for (int i = 0; ; i++)
       if (i < this.data.size())
       {
-        if (!((CustomGallery)this.data.get(i)).isSeleted)
+        if (!this.data.get(i).isSeleted)
           bool = false;
       }
       else
@@ -137,7 +137,7 @@ public class GalleryAdapter extends BaseAdapter
       boolean bool = false;
       if (i < j)
       {
-        if (((CustomGallery)this.data.get(i)).isSeleted)
+        if (this.data.get(i).isSeleted)
           bool = true;
       }
       else
@@ -148,7 +148,7 @@ public class GalleryAdapter extends BaseAdapter
   public void selectAll(boolean paramBoolean)
   {
     for (int i = 0; i < this.data.size(); i++)
-      ((CustomGallery)this.data.get(i)).isSeleted = paramBoolean;
+      this.data.get(i).isSeleted = paramBoolean;
     notifyDataSetChanged();
   }
 
